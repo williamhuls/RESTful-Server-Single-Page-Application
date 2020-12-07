@@ -1,0 +1,28 @@
+{
+    "name": "rest-spa",
+    "version": "0.0.0",
+    "description": "RESTful Web Server and Single Page Application",
+    "author": {
+        "name": "BJ Huls",
+        "email": "huls6872@stthomas.edu"
+    },
+    "contributors": [
+        {
+            "name": "Sean Corrigan",
+            "email": "corr3751@stthomas.edu"
+        },
+        {
+            "name": "Bailey Bakken",
+            "email": "bailey.bakken@stthomas.edu"
+        }
+    ],
+    "main": "server.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/williamhuls/RESTful-Server-Single-Page-Application"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "sqlite3": "^4.1.0"
+    }
+}

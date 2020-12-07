@@ -1,0 +1,8 @@
+* {
+    margin: 0 auto;
+}
+
+#leafletmap {
+    width: 800px;  /* feel free to change this! */
+    height: 600px; /* feel free to change this! */
+}
