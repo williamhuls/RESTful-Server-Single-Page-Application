@@ -154,20 +154,23 @@ app.put('/new-incident', (req, res) => {
     if(exists){
         res.status(500).type('txt').send('error: case with case_number=' + case_number + ' already exists');
     }
-    else{
-        let new_case={
-            case_number: case_number,
-            date: date,
-            time: time,
-            code: code,
-            incident: incident,
-            police_grid: police_grid,
-            neighborhood_number: neighborhood_number,
-            block: block
-        };
-        db.run("INSERT INTO Incidents(casenumber,date,time,code,incident,police_grid,neighborhood_number,block VALUES("+new_case.toString()+")");
-        res.status(200).type('txt').send('success');
-    }
+        let newcase=[
+            case_number,
+            date+"T"+time,
+            code,
+            incident,
+            police_grid,
+            neighborhood_number,
+            block
+        ];
+        db.run("INSERT INTO Incidents (case_number, date_time, code, incident, police_grid, neighborhood_number, block) VALUES (? ,? ,? ,? ,? ,? , ?)", newcase, (err) => {
+            if (err) {
+                res.status(500).send("Error: database did not update");
+            }
+            else {
+                res.status(200).type('txt').send("success");
+            }
+        });
 });
 
 
