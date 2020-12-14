@@ -132,6 +132,7 @@
             if(search==null){search="";}
             var data={};
             var str="";
+            var type="";
             document.getElementById("test").innterHTML=document.getElementById("neighborhood1").value;
 
             var xmlhttp = new XMLHttpRequest();
@@ -141,7 +142,16 @@
                 if (this.readyState == 4 && this.status == 200) {
                     data = JSON.parse(this.responseText);
                     for(var i=0;i<data.length;i++){
-                        str=str+"<tr>";
+                        if((data[i].code>99 && data[i].code<300) || (data[i].code>399 && data[i].code<500) || (data[i].code>799 && data[i].code<1000)){
+                            type="personal";
+                        }
+                        else if((data[i].code>299 && data[i].code<400) || (data[i].code>499 && data[i].code<800) || (data[i].code>1399 && data[i].code<1500)){
+                            type="property";
+                        }
+                        else{
+                            type="other";
+                        }
+                        str=str+"<tr class="+type+">";
                         str=str+"<td>"+data[i].case_number+"</td>";
                         str=str+"<td>"+data[i].date+"</td>";
                         str=str+"<td>"+data[i].time+"</td>";
@@ -149,7 +159,7 @@
                         str=str+"<td>"+data[i].police_grid+"</td>";
                         str=str+"<td>"+data[i].neighborhood_number+"</td>";
                         str=str+"<td>"+data[i].block+"</td>";
-                        str=str+"<tr>";
+                        str=str+"</tr>";
                     }
                     document.getElementById("tbl").innerHTML = str;
                 }
@@ -161,6 +171,12 @@
 </head>
 <body onload="tablebuild(); init();">
     <p id="test"></p>
+    <div class="fixed-div">
+        <p class="legend">Legend</p>
+        <p class="legend1">Personal Crimes</p>
+        <p class="legend2">Property Crimes</p>
+        <p class="legend3">Other Crimes</p>
+    </div>
     <form>
         <input  type="checkbox" id="code2">Rape<br>
         <input  type="checkbox" id="code3">Robbery<br>
@@ -198,7 +214,8 @@
         <input type="button" onclick="update();" value="Submit">
     </form>
     <div id="app">
-        <div id="leafletmap"></div>
+        <div id="leafletmap">
+        </div>
     </div>
     <table >
         <thead>

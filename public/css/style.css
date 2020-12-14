@@ -1,20 +1,48 @@
 * {
     margin: 0 auto;
 }
+.fixed-div {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  outline: solid black;
+  background-color: rgb(223, 221, 221);
+}
+.legend{
+  font-size: 3rem;
+}
+.legend1{
+  font-size: 2rem;
+  background-color: #fd5151;
+}
+.legend2{
+  font-size: 2rem;
+  background-color: #b4ffb6;
+}
+.legend3{
+  font-size: 2rem;
+  background-color: #fff09d;
+}
 table {
     border-collapse: collapse;
     width: 80%;
   }
-  
+  .personal{
+    background-color: #fd5151;
+  }
+  .property{
+    background-color: #b4ffb6;
+  }
+  .other{
+    background-color: #fff09d;
+  }
   th, td {
     text-align: left;
     padding: 8px;
   }
   
-  tr:nth-child(even){background-color: #f2f2f2}
-  
   th {
-    background-color: #4CAF50;
+    background-color: #2315e2;
     color: white;
   }
 #leafletmap {
