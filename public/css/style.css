@@ -1,7 +1,22 @@
 * {
     margin: 0 auto;
 }
-
+table {
+    border-collapse: collapse;
+    width: 80%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2}
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
 #leafletmap {
     width: 800px;  /* feel free to change this! */
     height: 600px; /* feel free to change this! */

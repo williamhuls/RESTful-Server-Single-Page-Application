@@ -22,10 +22,78 @@
 
     <!-- Application -->
     <link rel="stylesheet" href="css/style.css"/>
-    <script type="application/javascript" src="scripts/app.js"></script>
+    <script type="application/javascript" src="scripts/app.js"></script> 
     <!-- End: Application -->
+
+    <script>
+        var params="";
+        
+        function update(){
+            params="";
+            params=params+"?start_date="+document.getElementById("start_date").value;
+            params=params+"&end_date="+document.getElementById("end_date").value;
+            params=params+"&code="+document.getElementById("code").value;
+            params=params+"&grid="+document.getElementById("grid").value;
+            params=params+"&neighborhood="+document.getElementById("neighborhood").value;
+            params=params+"&limit="+document.getElementById("limit").value;
+            
+            tablebuild(params);
+        }
+
+        function tablebuild(search){
+            if(search==null){search="";}
+            var data={};
+            var str="";
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    data = JSON.parse(this.responseText);
+                    for(var i=0;i<data.length;i++){
+                        str=str+"<tr>";
+                        str=str+"<td>"+data[i].case_number+"</td>";
+                        str=str+"<td>"+data[i].date+"</td>";
+                        str=str+"<td>"+data[i].time+"</td>";
+                        str=str+"<td>"+data[i].incident+"</td>";
+                        str=str+"<td>"+data[i].police_grid+"</td>";
+                        str=str+"<td>"+data[i].neighborhood_number+"</td>";
+                        str=str+"<td>"+data[i].block+"</td>";
+                        str=str+"<tr>";
+                    }
+                    document.getElementById("tbl").innerHTML = str;
+                }
+            };
+        xmlhttp.open("GET", "/incidents"+search, true);
+        xmlhttp.send();
+        }
+        
+    </script>
 </head>
-<body onload="init()">
+<body onload="tablebuild();">
+    <p id="test"></p>
+    <form>
+        <input  type="text" placeholder="Start Date.." id="start_date">
+        <input  type="text" placeholder="End Date.." id="end_date">
+        <input  type="text" placeholder="Code.." id="code">
+        <input  type="text" placeholder="Grid.." id="grid">
+        <input  type="text" placeholder="Neighborhood.." id="neighborhood">
+        <input  type="text" placeholder="Limit.." id="limit">
+        <input type="button" onclick="update();" value="Submit">
+    </form>
+    <table >
+        <thead>
+            <tr>
+                <th>Case Number</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Incident</th>
+                <th>Police Grid</th>
+                <th>Neighborhood</th>
+                <th>Block</th>
+            </tr>
+        </thead>
+        <tbody id="tbl">
+        </tbody>
+    </table>
     <!-- Main app -->
     <div id="app">
         <div id="leafletmap"></div>

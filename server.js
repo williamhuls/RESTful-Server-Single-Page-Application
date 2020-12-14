@@ -89,17 +89,17 @@ app.get('/incidents', (req, res) => {
     let neighborhood=url.searchParams.get('neighborhood');
     let limit=url.searchParams.get('limit');
 
-    if(start_date==null){start_date='2014-08-14';}
-    if(end_date==null){end_date='2020-11-26';}
-    if(limit==null){limit=1000;}
+    if(start_date==null || start_date==""){start_date='2014-08-14';}
+    if(end_date==null || end_date==""){end_date='2020-11-26';}
+    if(limit==null || limit==""){limit=1000;}
 
     qry=qry+" WHERE case_number > 0";
 
-    if(code!=null){qry=qry+' AND code IN ('+code.toString()+')';}
-    if(grid!=null){qry=qry+' AND grid IN ('+grid.toString()+')';}
-    if(neighborhood!=null){qry=qry+' AND neighborhood_number IN ('+neighborhood.toString()+')';}
+    if(code!=null && code!=""){qry=qry+' AND code IN ('+code.toString()+')';}
+    if(grid!=null && grid!=""){qry=qry+' AND grid IN ('+grid.toString()+')';}
+    if(neighborhood!=null && neighborhood!=""){qry=qry+' AND neighborhood_number IN ('+neighborhood.toString()+')';}
 
-    db.all('SELECT * From Incidents'+qry,[], (err,rows) => {
+    db.all('SELECT * From Incidents '+qry+ ' ORDER BY date_time DESC',[], (err,rows) => {
         if(rows.length==0){
             res.status(404).type(".txt").send("Error"); 
         }
@@ -187,6 +187,7 @@ function databaseSelect(query, params) {
         })
     })
 }
+
 
 // Create Promise for SQLite3 database INSERT query
 function databaseInsert(query, params) {
