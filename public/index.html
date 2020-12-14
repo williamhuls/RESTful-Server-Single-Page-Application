@@ -32,11 +32,99 @@
             params="";
             params=params+"?start_date="+document.getElementById("start_date").value;
             params=params+"&end_date="+document.getElementById("end_date").value;
-            params=params+"&code="+document.getElementById("code").value;
-            params=params+"&grid="+document.getElementById("grid").value;
-            params=params+"&neighborhood="+document.getElementById("neighborhood").value;
-            params=params+"&limit="+document.getElementById("limit").value;
+            params=params+"&code="
+
+            if(document.getElementById("code2").checked==true) {
+                for(var i=200;i<300;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code3").checked==true) {
+                for(var i=300;i<400;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code4").checked==true) {
+                for(var i=400;i<500;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code5").checked==true) {
+                for(var i=500;i<600;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code6").checked==true) {
+                for(var i=600;i<700;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code7").checked==true) {
+                for(var i=700;i<800;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code8").checked==true) {
+                for(var i=800;i<900;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code9").checked==true) {
+                for(var i=900;i<1000;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code14").checked==true) {
+                for(var i=1400;i<1500;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code18").checked==true) {
+                for(var i=1800;i<1900;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code2619").checked==true) {
+                for(var i=2619;i<2620;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code9954").checked==true) {
+                for(var i=9954;i<9955;i++){
+                    params=params+i+",";
+                }
+            }
+            if(document.getElementById("code9959").checked==true) {
+                for(var i=9959;i<9960;i++){
+                    params=params+i+",";
+                }
+            }
+            params=params+"0";
+
             
+            params=params+"&neighborhood=";
+            if(document.getElementById("neighborhood1").checked==true) {params=params+"1,";}
+            if(document.getElementById("neighborhood2").checked==true) {params=params+"2,";}
+            if(document.getElementById("neighborhood3").checked==true) {params=params+"3,";}
+            if(document.getElementById("neighborhood4").checked==true) {params=params+"4,";}
+            if(document.getElementById("neighborhood5").checked==true) {params=params+"5,";}
+            if(document.getElementById("neighborhood6").checked==true) {params=params+"6,";}
+            if(document.getElementById("neighborhood7").checked==true) {params=params+"7,";}
+            if(document.getElementById("neighborhood8").checked==true) {params=params+"8,";}
+            if(document.getElementById("neighborhood9").checked==true) {params=params+"9,";}
+            if(document.getElementById("neighborhood10").checked==true) {params=params+"10,";}
+            if(document.getElementById("neighborhood11").checked==true) {params=params+"11,";}
+            if(document.getElementById("neighborhood12").checked==true) {params=params+"12,";}
+            if(document.getElementById("neighborhood13").checked==true) {params=params+"13,";}
+            if(document.getElementById("neighborhood14").checked==true) {params=params+"14,";}
+            if(document.getElementById("neighborhood15").checked==true) {params=params+"15,";}
+            if(document.getElementById("neighborhood16").checked==true) {params=params+"16,";}
+            if(document.getElementById("neighborhood17").checked==true) {params=params+"17,";}
+            params=params+"0";
+            
+
+            params=params+"&limit="+document.getElementById("limit").value;
+            params=params+"&grid=";
             tablebuild(params);
         }
 
@@ -44,7 +132,11 @@
             if(search==null){search="";}
             var data={};
             var str="";
+            document.getElementById("test").innterHTML=document.getElementById("neighborhood1").value;
+
             var xmlhttp = new XMLHttpRequest();
+        
+            xmlhttp.open("GET", "/incidents"+search, true);
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     data = JSON.parse(this.responseText);
@@ -62,23 +154,52 @@
                     document.getElementById("tbl").innerHTML = str;
                 }
             };
-        xmlhttp.open("GET", "/incidents"+search, true);
-        xmlhttp.send();
+            xmlhttp.send();
         }
         
     </script>
 </head>
-<body onload="tablebuild();">
+<body onload="tablebuild(); init();">
     <p id="test"></p>
     <form>
+        <input  type="checkbox" id="code2">Rape<br>
+        <input  type="checkbox" id="code3">Robbery<br>
+        <input  type="checkbox" id="code4">Assault, Aggravated <br>
+        <input  type="checkbox" id="code5">Burglary<br>
+        <input  type="checkbox" id="code6">Theft, Except Auto Theft<br>
+        <input  type="checkbox" id="code7">Theft, Motor Vehicle<br>
+        <input  type="checkbox" id="code8">Assualt, Domestic<br>
+        <input  type="checkbox" id="code9">Arson<br>
+        <input  type="checkbox" id="code14">Property Damage<br>
+        <input  type="checkbox" id="code18">Narcotics<br>
+        <input  type="checkbox" id="code2619">Weapons<br>
+        <input  type="checkbox" id="code9954">Proactive Police Visit<br>
+        <input  type="checkbox" id="code9959">Community Engagement Event<br>
+        <input  type="checkbox" id="neighborhood1" >Conway/Battlecreek/Highwood <br>
+        <input  type="checkbox" id="neighborhood2" >Greater East Side <br>
+        <input  type="checkbox" id="neighborhood3" >West Side <br>
+        <input  type="checkbox" id="neighborhood4" >Dayton's Bluff <br>
+        <input  type="checkbox" id="neighborhood5" >Payne/Phalen <br>
+        <input  type="checkbox" id="neighborhood6" >North End <br>
+        <input  type="checkbox" id="neighborhood7" >Thomas/Dale(Frogtown) <br>
+        <input  type="checkbox" id="neighborhood8" >Summit/University <br>
+        <input  type="checkbox" id="neighborhood9" >West Seventh <br>
+        <input  type="checkbox" id="neighborhood10" >Como <br>
+        <input  type="checkbox" id="neighborhood11" >Hamline/Midway <br>
+        <input  type="checkbox" id="neighborhood12" >St. Anthony <br>
+        <input  type="checkbox" id="neighborhood13" >Union Park <br>
+        <input  type="checkbox" id="neighborhood14" >Macalester-Groveland <br>
+        <input  type="checkbox" id="neighborhood15" >Highland <br>
+        <input  type="checkbox" id="neighborhood16" >Summit Hill <br>
+        <input  type="checkbox" id="neighborhood17" >Capitol River <br>
         <input  type="text" placeholder="Start Date.." id="start_date">
         <input  type="text" placeholder="End Date.." id="end_date">
-        <input  type="text" placeholder="Code.." id="code">
-        <input  type="text" placeholder="Grid.." id="grid">
-        <input  type="text" placeholder="Neighborhood.." id="neighborhood">
         <input  type="text" placeholder="Limit.." id="limit">
         <input type="button" onclick="update();" value="Submit">
     </form>
+    <div id="app">
+        <div id="leafletmap"></div>
+    </div>
     <table >
         <thead>
             <tr>
@@ -95,8 +216,6 @@
         </tbody>
     </table>
     <!-- Main app -->
-    <div id="app">
-        <div id="leafletmap"></div>
-    </div>
+
 </body>
 </html>

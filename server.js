@@ -95,9 +95,9 @@ app.get('/incidents', (req, res) => {
 
     qry=qry+" WHERE case_number > 0";
 
-    if(code!=null && code!=""){qry=qry+' AND code IN ('+code.toString()+')';}
+    if(code!=null && code!="" && code!="0"){qry=qry+' AND code IN ('+code.toString()+')';}
     if(grid!=null && grid!=""){qry=qry+' AND grid IN ('+grid.toString()+')';}
-    if(neighborhood!=null && neighborhood!=""){qry=qry+' AND neighborhood_number IN ('+neighborhood.toString()+')';}
+    if(neighborhood!=null && neighborhood!="" && neighborhood!="0"){qry=qry+' AND neighborhood_number IN ('+neighborhood.toString()+')';}
 
     db.all('SELECT * From Incidents '+qry+ ' ORDER BY date_time DESC',[], (err,rows) => {
         if(rows.length==0){
@@ -119,7 +119,6 @@ app.get('/incidents', (req, res) => {
                 count=count+1;
                 }
             });
-            console.log(data);
             res.status(200).type('json').send(data);
         }
     });
