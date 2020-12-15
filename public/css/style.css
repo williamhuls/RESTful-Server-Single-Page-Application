@@ -27,14 +27,18 @@ table {
     border-collapse: collapse;
     width: 80%;
   }
+  tr:hover { background-color : #89ae37; }
   .personal{
     background-color: #fd5151;
+    cursor:pointer;
   }
   .property{
     background-color: #b4ffb6;
+    cursor:pointer;
   }
   .other{
     background-color: #fff09d;
+    cursor:pointer;
   }
   th, td {
     text-align: left;

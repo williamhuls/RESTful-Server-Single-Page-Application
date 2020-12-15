@@ -2,23 +2,23 @@ let app;
 let map;
 let neighborhood_markers = 
 [
-    {location: [44.942068, -93.020521], marker: null},
-    {location: [44.977413, -93.025156], marker: null},
-    {location: [44.931244, -93.079578], marker: null},
-    {location: [44.956192, -93.060189], marker: null},
-    {location: [44.978883, -93.068163], marker: null},
-    {location: [44.975766, -93.113887], marker: null},
-    {location: [44.959639, -93.121271], marker: null},
-    {location: [44.947700, -93.128505], marker: null},
-    {location: [44.930276, -93.119911], marker: null},
-    {location: [44.982752, -93.147910], marker: null},
-    {location: [44.963631, -93.167548], marker: null},
-    {location: [44.973971, -93.197965], marker: null},
-    {location: [44.949043, -93.178261], marker: null},
-    {location: [44.934848, -93.176736], marker: null},
-    {location: [44.913106, -93.170779], marker: null},
-    {location: [44.937705, -93.136997], marker: null},
-    {location: [44.949203, -93.093739], marker: null}
+    {location: [44.942068, -93.020521], marker: 1},
+    {location: [44.977413, -93.025156], marker: 2},
+    {location: [44.931244, -93.079578], marker: 3},
+    {location: [44.956192, -93.060189], marker: 4},
+    {location: [44.978883, -93.068163], marker: 5},
+    {location: [44.975766, -93.113887], marker: 6},
+    {location: [44.959639, -93.121271], marker: 7},
+    {location: [44.947700, -93.128505], marker: 8},
+    {location: [44.930276, -93.119911], marker: 9},
+    {location: [44.982752, -93.147910], marker: 10},
+    {location: [44.963631, -93.167548], marker: 11},
+    {location: [44.973971, -93.197965], marker: 12},
+    {location: [44.949043, -93.178261], marker: 13},
+    {location: [44.934848, -93.176736], marker: 14},
+    {location: [44.913106, -93.170779], marker: 15},
+    {location: [44.937705, -93.136997], marker: 16},
+    {location: [44.949203, -93.093739], marker: 17}
 ];
 
 function init() {
@@ -62,6 +62,7 @@ function init() {
         console.log('Error:', error);
     });
 }
+
 
 function getJSON(url) {
     return new Promise((resolve, reject) => {

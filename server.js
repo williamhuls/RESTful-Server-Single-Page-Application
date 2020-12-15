@@ -114,6 +114,12 @@ app.get('/incidents', (req, res) => {
                 var grid=row.police_grid;
                 var neighborhood=row.neighborhood_number;
                 var block=row.block;
+                var n= block.split(' ')[0].indexOf('X');
+                if(n!=-1){
+                    var array=block.split('');
+                    array[n]="0";
+                    var block=array.join("");
+                }
                 if(count<parseInt(limit) && date>=start_date.toString() && date<=end_date.toString()){
                 data.push({case_number: casenumber, date: date, time: time, code: code, incident: incident, police_grid: grid, neighborhood_number: neighborhood, block: block});
                 count=count+1;
