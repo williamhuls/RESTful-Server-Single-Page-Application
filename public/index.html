@@ -256,7 +256,6 @@
         function viewCoords(data){
             myTab=document.getElementById("table");
             var x=myTab.rows[1].cells[5].innerHTML;
-            document.getElementById("test").innerHTML=x;
         }
         
         function panTo(data){
@@ -277,12 +276,17 @@
     <p id="secret2" hidden></p>
     <p id="secret" hidden></p>
     <p id="test"></p>
+    <h1>St. Paul Crime Database</h1>
     <div class="fixed-div">
         <p class="legend">Legend</p>
         <p class="legend1">Personal Crimes</p>
         <p class="legend2">Property Crimes</p>
         <p class="legend3">Other Crimes</p>
     </div>
+    <div class="columned">
+        <h2>Filter Incident</h2>
+        </div>
+    <div class="columned">
     <form>
         <input  type="checkbox" id="code2">Rape<br>
         <input  type="checkbox" id="code3">Robbery<br>
@@ -297,6 +301,13 @@
         <input  type="checkbox" id="code2619">Weapons<br>
         <input  type="checkbox" id="code9954">Proactive Police Visit<br>
         <input  type="checkbox" id="code9959">Community Engagement Event<br>
+    </div>
+    <div class="columned"><br></div>
+    <div class="columned">
+    <h2>Filter Area</h2>
+    </div>
+    <div class="columned">
+        
         <input  type="checkbox" id="neighborhood1" >Conway/Battlecreek/Highwood <br>
         <input  type="checkbox" id="neighborhood2" >Greater East Side <br>
         <input  type="checkbox" id="neighborhood3" >West Side <br>
@@ -314,11 +325,14 @@
         <input  type="checkbox" id="neighborhood15" >Highland <br>
         <input  type="checkbox" id="neighborhood16" >Summit Hill <br>
         <input  type="checkbox" id="neighborhood17" >Capitol River <br>
-        <input  type="text" placeholder="Start Date.." id="start_date">
-        <input  type="text" placeholder="End Date.." id="end_date">
+    </div>
+    <br>
+        <input  type="text" placeholder="Start Date.." id="start_date"> <br>
+        <input  type="text" placeholder="End Date.." id="end_date"> <br>
         <input  type="text" placeholder="Limit.." id="limit">
         <input type="button" onclick="update();" value="Submit">
     </form>
+  
     <form>
         <input type="text" placeholder="Location.." id="coordinates">
         <input type="button" onclick="pan();" value="Go">

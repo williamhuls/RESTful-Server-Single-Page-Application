@@ -1,5 +1,10 @@
 * {
     margin: 0 auto;
+    font-family: calibri;
+}
+.columned{
+  background-color: lightblue;
+  column-count:3
 }
 .fixed-div {
   position: fixed;
@@ -22,6 +27,13 @@
 .legend3{
   font-size: 2rem;
   background-color: #fff09d;
+}
+h1{
+  font-size: 4rem;
+  text-align: center;
+}
+h2{
+  font-size: 3rem;
 }
 table {
     border-collapse: collapse;
