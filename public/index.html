@@ -148,21 +148,19 @@
                 else{
                     type="other";
                 }
-                //var url='https://nominatim.openstreetmap.org/search?q=' + data[i].block + ' st paul&format=json&accept-language=en';
-                //getText(url, putBlockCoords);
-                //var lat=document.getElementById("secret2").innerHTML.split(" ")[0];
-                //var long=document.getElementById("secret2").innerHTML.split(" ")[0];
-                //if(lat<map.getBounds().getNorth() && lat>map.getBounds().getSouth() && lat<map.getBounds().getEast() && lat>map.getBounds().getWest()){
-                str=str+"<tr class="+type+" id=row"+i+" onclick=clickme("+i+")>";
-                str=str+"<td>"+data[i].case_number+"</td>";
-                str=str+"<td>"+data[i].date+"</td>";
-                str=str+"<td>"+data[i].time+"</td>";
-                str=str+"<td>"+data[i].incident+"</td>";
-                str=str+"<td>"+data[i].police_grid+"</td>";
-                str=str+"<td>"+getName()[data[i].neighborhood_number-1]+"</td>";
-                str=str+"<td>"+data[i].block+"</td>";
-                str=str+"</tr>";
-                //}
+                var lat=neighborhood_markers[data[i].neighborhood_number-1].location[0];
+                var long=neighborhood_markers[data[i].neighborhood_number-1].location[1];
+                if(lat<map.getBounds().getNorth() && lat>map.getBounds().getSouth() && long<map.getBounds().getEast() && long>map.getBounds().getWest()){
+                    str=str+"<tr class="+type+" id=row"+i+" onclick=clickme("+i+")>";
+                    str=str+"<td>"+data[i].case_number+"</td>";
+                    str=str+"<td>"+data[i].date+"</td>";
+                    str=str+"<td>"+data[i].time+"</td>";
+                    str=str+"<td>"+data[i].incident+"</td>";
+                    str=str+"<td>"+data[i].police_grid+"</td>";
+                    str=str+"<td>"+getName()[data[i].neighborhood_number-1]+"</td>";
+                    str=str+"<td>"+data[i].block+"</td>";
+                    str=str+"</tr>";
+                }
             }
             document.getElementById("tbl").innerHTML = str;
             //document.getElementById("test").innerHTML = map.getBounds().getNorth()+' '+map.getBounds().getSouth()+ ' '+ map.getBounds().getEast()+' '+map.getBounds().getWest();
@@ -177,8 +175,10 @@
             {
                 if (request.readyState == 4 && request.status == 200)
                 {
+                    if(JSON.parse(request.responseText).length<1){alert("Error: coordinates not found");}
                     callback(JSON.parse(request.responseText)); 
                 }
+
             }; 
             request.open('GET', url);
             request.send();
@@ -209,6 +209,12 @@
         function addMarker(data){
             var lat=data[0].lat;
             var long=data[0].lon;
+            var oops=false;
+            if(lat>45.008206){oops=true;}
+            if(lat<44.883658){oops=true;}
+            if(long<-93.217977){oops=true;}
+            if(long>-92.993787){oops=true;}
+            if(oops){alert("Error: coordinates outside range");}
             var myTab=document.getElementById("table");
             var row=parseInt(document.getElementById("secret").innerHTML);
             var time=myTab.rows[row].cells[2].innerHTML;
