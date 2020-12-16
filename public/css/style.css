@@ -141,3 +141,10 @@ iframe{
   display: block;
   border-style: none;
 }
+ul{
+  text-align: center;
+}
+li{
+  display: inline;
+  font-size: 1.5rem;
+}
