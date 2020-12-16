@@ -25,11 +25,9 @@
     <script type="application/javascript" src="scripts/app.js"></script> 
     <!-- End: Application -->
 
-    <script>
-        var params="";
-        
+    <script>        
         function update(){
-            params="";
+            var params="";
             params=params+"?start_date="+document.getElementById("start_date").value;
             params=params+"&end_date="+document.getElementById("end_date").value;
             params=params+"&code="
@@ -282,7 +280,8 @@
     <p id="secret2" hidden></p>
     <p id="secret" hidden></p>
     <p id="test"></p>
-    <h1>St. Paul Crime Database</h1>
+    <h1>St. Paul Crime Database</h1> </br>
+    <a href="about.html"><p style="text-align:center">About This Project</a>
     <div class="fixed-div">
         <p class="legend">Legend</p>
         <p class="legend1">Personal Crimes</p>
@@ -333,8 +332,8 @@
         <input  type="checkbox" id="neighborhood17" >Capitol River <br>
     </div>
     <br>
-        <input  type="text" placeholder="Start Date.." id="start_date"> <br>
-        <input  type="text" placeholder="End Date.." id="end_date"> <br>
+        <input  type="text" placeholder="YYYY-MM-DD" id="start_date">Start Date <br>
+        <input  type="text" placeholder="YYYY-MM-DD" id="end_date">End Date <br>
         <input  type="text" placeholder="Limit.." id="limit">
         <input type="button" onclick="update();" value="Submit">
     </form>
